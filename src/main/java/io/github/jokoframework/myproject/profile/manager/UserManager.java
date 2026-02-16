@@ -1,8 +1,10 @@
 package io.github.jokoframework.myproject.profile.manager;
-
 import io.github.jokoframework.myproject.exceptions.UserException;
 import io.github.jokoframework.myproject.web.dto.UserAuthDTO;
 import io.github.jokoframework.myproject.profile.dto.UserDTO;
+
+import io.github.jokoframework.myproject.web.request.CreateUserRequestDTO;
+import io.github.jokoframework.myproject.web.request.UpdateUserRequestDTO;
 
 import java.util.List;
 
@@ -58,5 +60,21 @@ public interface UserManager {
      * @return byte[]
      */
     byte[] exportUsersListToCsv(List<UserDTO> users, List<String> columns);
-    
+
+
+
+    /**
+     * Create a new user
+     */
+    UserDTO createUser(CreateUserRequestDTO request) throws UserException;
+
+    /**
+     * Update an existing user
+     */
+    UserDTO updateUser(Long userId, UpdateUserRequestDTO request) throws UserException;
+
+    /**
+     * Delete a user by ID (hard delete)
+     */
+    void deleteUser(Long userId) throws UserException;
 }

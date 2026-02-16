@@ -1,3 +1,19 @@
+CREATE SCHEMA IF NOT EXISTS audit;
+
+CREATE SEQUENCE IF NOT EXISTS audit.audit_event_id_seq START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE IF NOT EXISTS audit.audit_event
+(
+    id BIGINT PRIMARY KEY NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    actor VARCHAR(255),
+    action VARCHAR(50) NOT NULL,
+    resource_type VARCHAR(50) NOT NULL,
+    resource_id VARCHAR(100) NOT NULL,
+    metadata TEXT,
+    correlation_id VARCHAR(100) NOT NULL
+    );
+
 CREATE TABLE IF NOT EXISTS  basic.notification
 (
    id integer PRIMARY KEY NOT NULL,

@@ -60,7 +60,10 @@ public class AuthorizationManagerImpl implements JokoAuthorizationManager {
                 .antMatchers(ApiPaths.ROOT_USERS,
                         ApiPaths.USERS_HEARTBEAT,
                         ApiPaths.USERS_BY_NAME,
-                        ApiPaths.USERS_CSV).hasAnyAuthority(ADMIN.name());
+                        ApiPaths.USERS_BY_ID,
+                        ApiPaths.USERS_CSV).hasAnyAuthority(ADMIN.name())
+                // Audit Events - restricted to ADMIN only
+                .antMatchers(ApiPaths.ROOT_AUDIT_EVENTS).hasAnyAuthority(ADMIN.name());
 
         // Only in dev profile,
         // Allows X-Frame-Options headers sent by H2 console.

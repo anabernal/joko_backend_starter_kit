@@ -59,4 +59,15 @@ public interface UserService {
      * @throws UserException if user doesn't exists
      */
     UserEntity getExistingUser(Long userId) throws UserException;
+
+    /**
+     * Save (create or update) a user entity
+     */
+    UserEntity save(UserEntity user);
+
+    /**
+     * Delete a user by its ID (hard delete)
+     */
+    void deleteById(Long userId) throws UserException;
+
 }

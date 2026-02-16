@@ -15,4 +15,5 @@
     <!-- -->
     <include file="db-changelog-evolution.xml" relativeToChangelogFile="true"/>
     <include file="db-changelog-notifications.xml" relativeToChangelogFile="true"/>
+    <include file="db-changelog-audit.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

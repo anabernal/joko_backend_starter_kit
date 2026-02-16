@@ -45,7 +45,8 @@ public class ApiPaths {
     public static final String PERSON_BY_NAME = ROOT_PERSON + "/{name}";
 
     public static final String PERSON_CSV = ROOT_PERSON + "/csv";
-    
+
+    public static final String USERS_BY_ID = ROOT_USERS + "/{userId}";
     /**
      * Autor FedeTraversi
      * routes for notifications management
@@ -56,9 +57,14 @@ public class ApiPaths {
     public static final String NOTIFICATIONS_USER = NOTIFICATIONS_BY_USER;
     public static final String NOTIFICATIONS_USER_BY_ID = NOTIFICATIONS_BY_USER + "/{notificationId}";
     public static final String NOTIFICATIONS_USER_READ = NOTIFICATIONS_USER_BY_ID;
-
+    /**
+     * Author Ana Bernal
+     * routes for audit events
+     */
+    public static final String ROOT_AUDIT_EVENTS = API_SECURE + "/audit-events";
     private ApiPaths() {
         
     }
+
 
 }

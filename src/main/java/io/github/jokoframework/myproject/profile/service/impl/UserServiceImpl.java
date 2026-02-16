@@ -55,6 +55,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEntity getExistingUser(Long userId) throws UserException {
 		return getByIdAndFailIfNotExist(userId, Boolean.TRUE);
-	}	
+	}
+
+
+    @Override
+    public UserEntity save(UserEntity user) {
+        return repository.save(user);
+    }
+
+    @Override
+    public void deleteById(Long userId) throws UserException {
+        UserEntity user = getByIdAndFailIfNotExist(userId, Boolean.TRUE);
+        repository.delete(user);
+    }
 
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="20260216-1" author="ana bernal">
+        <comment>Create audit schema</comment>
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS audit;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260216-2" author="jose">
+        <comment>Create audit_event table for action auditing</comment>
+        <createSequence sequenceName="audit_event_id_seq"
+                        schemaName="audit"
+                        incrementBy="1"
+                        startValue="1"/>
+
+        <createTable tableName="audit_event" schemaName="audit"
+                     remarks="Stores audit events for user actions">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"
+                             primaryKeyName="pk_audit_event"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP(6) WITH TIMEZONE"
+                    remarks="Timestamp of the event"
+                    defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="actor" type="VARCHAR(255)"
+                    remarks="Username of the authenticated user who performed the action"/>
+            <column name="action" type="VARCHAR(50)"
+                    remarks="Action type: USER_CREATED, USER_UPDATED, USER_DELETED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_type" type="VARCHAR(50)"
+                    remarks="Type of the affected resource (e.g., USER)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="VARCHAR(100)"
+                    remarks="ID of the affected resource">
+                <constraints nullable="false"/>
+            </column>
+            <column name="metadata" type="TEXT"
+                    remarks="Optional JSON metadata with additional details"/>
+            <column name="correlation_id" type="VARCHAR(100)"
+                    remarks="Correlation ID for request tracing">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="audit_event" schemaName="audit"
+                     indexName="idx_audit_event_action">
+            <column name="action"/>
+        </createIndex>
+
+        <createIndex tableName="audit_event" schemaName="audit"
+                     indexName="idx_audit_event_resource_type">
+            <column name="resource_type"/>
+        </createIndex>
+
+        <createIndex tableName="audit_event" schemaName="audit"
+                     indexName="idx_audit_event_resource_id">
+            <column name="resource_id"/>
+        </createIndex>
+
+        <createIndex tableName="audit_event" schemaName="audit"
+                     indexName="idx_audit_event_created_at">
+            <column name="created_at"/>
+        </createIndex>
+
+        <createIndex tableName="audit_event" schemaName="audit"
+                     indexName="idx_audit_event_correlation_id">
+            <column name="correlation_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
