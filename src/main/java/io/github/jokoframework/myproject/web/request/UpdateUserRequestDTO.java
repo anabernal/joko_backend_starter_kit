@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 /**
  * Request DTO for updating an existing user.
  *
- * @author ana bernal
+ * @author jose
  */
 public class UpdateUserRequestDTO {
 

@@ -11,7 +11,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="20260216-2" author="ana bernal">
+    <changeSet id="20260216-2" author="jose">
         <comment>Create audit_event table for action auditing</comment>
         <createSequence sequenceName="audit_event_id_seq"
                         schemaName="audit"

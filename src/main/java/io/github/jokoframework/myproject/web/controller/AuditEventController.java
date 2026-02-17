@@ -25,7 +25,7 @@ import java.util.Date;
  * REST controller for querying audit events.
  * Restricted to ADMIN users only.
  *
- * @author ana bernal
+ * @author jose
  */
 @RestController
 public class AuditEventController extends BaseRestController {
