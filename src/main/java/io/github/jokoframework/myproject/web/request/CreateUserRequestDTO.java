@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 /**
  * Request DTO for creating a new user.
  *
- * @author jose
+ * @author ana bernal
  */
 public class CreateUserRequestDTO {
 
